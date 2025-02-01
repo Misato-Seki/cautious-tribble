@@ -38,6 +38,14 @@ function addTask() {
     saveTasksToLocalStorage();
 }
 
+function getTaskList() {
+    return taskList; // Export taskList for testing purposes
+}
+
+function clearTasks() {
+    taskList = []; // Function to clear taskList for tests
+}
+
 function toggleTask(index) {
     taskList[index].completed = !taskList[index].completed;
     renderTasks();
@@ -175,3 +183,5 @@ function retrieveTasksFromLocalStorage() {
         }
     }
 }
+
+module.exports = { addTask, getTaskList, clearTasks, addImportantTask };
