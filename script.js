@@ -10,7 +10,7 @@
 // Arrays for tasks
 let taskList = [];
 let importantTaskList = [];
-historyList = []; // Accidental global variable
+let historyList = []; // Accidental global variable
 
 window.onload = function() {
     // Load tasks from localStorage on page load
@@ -95,6 +95,7 @@ function addImportantTask() {
     // BUG: No alert or message if empty
     if (task === '') {
         // Not returning or alerting => inconsistency
+        alert('Please enter a task.');
         return; 
     }
 
@@ -106,7 +107,7 @@ function addImportantTask() {
 
 function toggleImportantTask(index) {
     // BUG: Off-by-one error, mistakenly uses index - 1
-    importantTaskList[index - 1].completed = !importantTaskList[index - 1].completed;
+    importantTaskList[index].completed = !importantTaskList[index].completed;
     renderImportantTasks();
     saveTasksToLocalStorage();
 }
