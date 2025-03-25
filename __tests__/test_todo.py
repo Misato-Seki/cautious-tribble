@@ -6,15 +6,26 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 import time
 import os
+import platform
 
 # Get the current directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Set the absolute path to chromedriver
-chromedriver_path = os.path.join(current_dir, "chromedriver")
+# 実行環境を確認
+system_platform = platform.system()
 
-# Start browser with ChromeDriver
+# macOS用かUbuntu用のchromedriverを選択
+if system_platform == "Darwin":  # macOS
+    chromedriver_path = os.path.join(os.path.dirname(__file__), "chromedriver_mac")
+elif system_platform == "Linux":  # Ubuntu (Linux)
+    chromedriver_path = os.path.join(os.path.dirname(__file__), "chromedriver_ubuntu")
+else:
+    raise Exception("Unsupported platform")
+
+# WebDriverのサービスを作成
 service = Service(executable_path=chromedriver_path)
+
+# Chromeドライバーを起動
 driver = webdriver.Chrome(service=service)
 
 try:
