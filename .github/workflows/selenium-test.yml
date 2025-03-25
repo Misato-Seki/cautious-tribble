@@ -31,4 +31,4 @@ jobs:
 
     - name: Run Selenium tests
       run: |
-        python __tests__/test_todo.py  # テストスクリプトのパス
+        python __tests__/test_todo.py
